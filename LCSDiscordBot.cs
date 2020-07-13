@@ -1,4 +1,4 @@
-﻿// LCSDiscordbot.cs
+// LCSDiscordbot.cs
 // LCS Discord Bot V1.1
 // By Evan Greavu
 // github.com/evancg37
@@ -33,13 +33,13 @@ namespace LCS_Discord_Bot
 
     class Scorekeeper
     {
-		const bool _DEBUG = false;
+	const bool _DEBUG = false;
         const int LOOP_DELAY_SECONDS = 60; // Number of seconds to wait in match result check loop
         const int BETBUFFER_MINS = 12; // Number of minutes past the hour of a scheduled match to accept bets
         const ulong ID_MAINCHANNEL = 900000000000000000; // Redacted
         const ulong ID_TESTCHANNEL = 910000000000000000; // Redacted 
         const string DISCORD_TOKEN = ""; // Redacted
-		static Regex MessageParseRegex = new Regex(@"!([\w\d\s]+)");
+	static Regex MessageParseRegex = new Regex(@"!([\w\d\s]+)");
 
         DiscordSocketClient Client;
         SocketTextChannel MainChannel;
@@ -1028,7 +1028,5 @@ namespace LCS_Discord_Bot
                 throw new FileNotFoundException("Cannot load Scoreboard from file because the file does not exist.");
             }
         }
-
     }
-
 }
