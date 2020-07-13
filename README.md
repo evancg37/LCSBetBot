@@ -9,6 +9,8 @@ A simple LCS Bet Bot for Discord. Uses Discord.Net in conjunction with data from
 
 ## Track the Scores
 
+`!scores`, `!allscores`, `!scoreboard`
+
 ![Scoreboard](https://i.imgur.com/hr6xF4i.png)
 
 ## Make Bets
@@ -29,4 +31,12 @@ Place a prediction that the team will win their next upcoming match. Correct pre
 
 ## Check the Schedule
 
-![Schedule](https://i.imgur.com/yI3sbWk.png)
+`!schedule`, `!games`
+
+![Schedule of Games](https://i.imgur.com/yI3sbWk.png)
+
+## Other Commands
+
+Check your score: `!myscore` or `!score`
+
+Get the next match between two teams: `!next <team1> !<team2>`
