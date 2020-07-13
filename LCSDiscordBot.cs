@@ -27,7 +27,7 @@ namespace LCS_Discord_Bot
 
             Console.WriteLine($"{DateTime.Now}: Starting Scorekeeper loop.");
             await scorekeeper.Start();
-			Console.WriteLine($"{DateTime.Now}: Exited Scorekeeper loop.");
+	    Console.WriteLine($"{DateTime.Now}: Exited Scorekeeper loop.");
         }
     }
 
@@ -218,9 +218,9 @@ namespace LCS_Discord_Bot
                 case "nextgame":
                 case "next":
                     if (args.Count() == 0)
-                        await SayInChannel(replyChannel, "Enter a team to check the next game for (!next <Team>)");
+                        await SayInChannel(replyChannel, "Enter a team to check the next game for (!next <Team>) or a pair of teams to find their next match (!next <Team1> <Team2>)");
                     else if (args.Count() > 2)
-                        await SayInChannel(replyChannel, "Usage: !next <Team>");
+                        await SayInChannel(replyChannel, "Usage: !next <Team> or !next <Team1> <Team2>");
                     else if (args.Count() == 1)
                     {
                         LCSTeam team_check = LCSTeam.ParseTeam(args[0]);
@@ -254,7 +254,6 @@ namespace LCS_Discord_Bot
                             await SayInChannel(replyChannel, $"{check1} and {check2} are not playing each other for the rest of the season.");
                         else
                             await SayInChannel(replyChannel, $"{check1} next plays {check2} at {nextMatchup.ScheduledTime:h:mm tt M/dd}");
-
                     }
                     break;
                 case "predict":
@@ -558,6 +557,7 @@ namespace LCS_Discord_Bot
                 await SayInMainChannel(message);
             }
         }
+	    
         Task DiscordReadyHandler()
         {
             if (!started)
