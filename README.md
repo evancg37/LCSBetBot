@@ -13,15 +13,19 @@ A simple LCS Bet Bot for Discord. Uses Discord.Net in conjunction with data from
 
 ## Make Bets
 
-`!bet 100 tsm`
+`!bet <Team> <Wager>` or `!bet <Wager> <Team>`
 
-`!bet TL 200`
+Place a bet with an amount of money to wager that the team will win their next upcoming match. Bets are double or nothing.
+
+![Making a Bet](https://i.imgur.com/mWo4GRp.png)
 
 ## Make Predictions
 
-`!predict 100t`
+`!predict <team>`
 
-`!predict cloud9`
+Place a prediction that the team will win their next upcoming match. Correct predictions are worth $10, incorrect predictions are worthless.
+
+![Making a Prediction](https://i.imgur.com/RXyhqrg.png)
 
 ## Check the Schedule
 
