@@ -24,20 +24,20 @@ namespace LCSDiscordBot
             LCSDiscordBot scorekeeper = new LCSDiscordBot(SCORES_FILE, BETS_FILE);
 
             Console.WriteLine($"{DateTime.Now:MM-dd-yyyy HH:mm}: Starting Scorekeeper loop.");
+            await scorekeeper.Initialize();
 
-            await scorekeeper.Start();
-            Console.WriteLine($"{DateTime.Now:MM-dd-yyyy HH:mm}: Scorekeeper loop exited.");
+            await Task.Delay(-1);
         }
     }
 
     class LCSDiscordBot
     {
-		const bool _DEBUG = false;
         static readonly Regex REGEX_MESSAGEPARSE = new Regex(@"!([\w\d\s.]+)");
         const int LOOP_DELAY_SECONDS = 60;
         const int BETBUFFER_MINS = 12;
         const ulong ID_MAINCHANNEL = 800000000000000000; // redacted
         const ulong ID_TESTCHANNEL = 900000000000000000;
+        const bool _DEBUG = false;
         const string DISCORD_TOKEN = ""; // redacted
 
         DiscordSocketClient Client;
@@ -103,7 +103,7 @@ namespace LCSDiscordBot
                 // Process possible command
                 await ProcessCommand(message.Author.Id, message.Channel as SocketTextChannel, command, args.ToList());
             }
-            else
+            else if (message.Content.StartsWith('!')) // If it looks like an attempted command but didn't pass the regex
             {
                 Console.WriteLine("Invalid command received: {0}", message.Content);
             }
@@ -580,13 +580,13 @@ namespace LCSDiscordBot
             if (!started)
             {
                 MainChannel = Client.GetChannel(_DEBUG ? ID_TESTCHANNEL : ID_MAINCHANNEL) as SocketTextChannel;
-                Task.Run(StartScorekeeping);
+                Task.Run(BeginScorekeepingLoop);
                 started = true;
             }
             return Task.CompletedTask;
         }
 
-        public async Task Start()
+        public async Task Initialize()
         {
             Client = new DiscordSocketClient();
 
@@ -609,7 +609,7 @@ namespace LCSDiscordBot
             await Client.StartAsync();
         }
 
-        async Task StartScorekeeping()
+        async Task BeginScorekeepingLoop()
         {
             if (_DEBUG)
                 await SayInMainChannel("Bot started. Test mode enabled.");
